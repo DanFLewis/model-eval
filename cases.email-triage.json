@@ -1,0 +1,20 @@
+{
+  "name": "email-triage",
+  "labelField": "action",
+  "labels": ["reply_needed", "add_to_calendar", "track_only", "ignore"],
+  "cases": [
+    {"id": "tutoring-thread", "input": "Thread. Parent: \"I could make her available when you are available. The library is being used as an election polling place but I think they still have space on the other side. Will you be available for two consecutive hours if our total is 10?\" Tutor: \"To clarify, you want to move one of the future hours and add it to tomorrow, rather than adding an additional hour overall? I can do two hours tomorrow. How does 2:00pm - 4:00pm at the library sound?\" Parent: \"Yes please add one of the future hours to tomorrow as well - if I need to add hours later on I can decide later on. Yes 2-4pm sounds good. Thank you\"", "expected": "add_to_calendar"},
+    {"id": "interview-invite", "input": "Interview invite: Thursday Nov 19 at 2pm CT with the hiring manager, Zoom link attached.", "expected": "add_to_calendar"},
+    {"id": "availability-request", "input": "Thanks for applying! Could you share your availability for a 30 min intro call next week?", "expected": "reply_needed"},
+    {"id": "rejection", "input": "We have decided to move forward with other candidates. We wish you the best.", "expected": "track_only"},
+    {"id": "application-received", "input": "Your application to Staff Engineer was received. We will be in touch if there is a match.", "expected": "track_only"},
+    {"id": "upload-references", "input": "Please upload your references by Friday Nov 13 to complete your application.", "expected": "reply_needed"},
+    {"id": "job-alert", "input": "10 new remote Python jobs near you! Click to view.", "expected": "ignore"},
+    {"id": "take-home-deadline", "input": "Your take-home assignment is due Monday Nov 16 at 5pm ET. Submit through the portal.", "expected": "add_to_calendar"},
+    {"id": "salary-question", "input": "Following up on our call: can you confirm the salary range you are looking for?", "expected": "reply_needed"},
+    {"id": "newsletter", "input": "Weekly newsletter: 5 tips to ace your system design interview.", "expected": "ignore"},
+    {"id": "still-reviewing", "input": "Just checking in, we are still reviewing candidates and expect to decide by end of month.", "expected": "track_only"},
+    {"id": "still-interested", "input": "Hi Alex, are you still interested in the role? Please let me know by tomorrow.", "expected": "reply_needed"},
+    {"id": "onsite-reminder", "input": "Reminder: your onsite is tomorrow 10am at 100 Main St. Reply to confirm.", "expected": "add_to_calendar"}
+  ]
+}
