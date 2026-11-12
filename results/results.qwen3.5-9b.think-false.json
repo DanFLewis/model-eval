@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "model": "qwen3.5:9b",
+    "baseUrl": "http://localhost:11434/v1",
+    "maxTokens": 700,
+    "temperature": 0,
+    "total": 13,
+    "passed": 5,
+    "accuracy": 0.38461538461538464,
+    "latencyAvgMs": 8216,
+    "latencyP95Ms": 12470,
+    "errors": 8
+  },
+  "results": [
+    {
+      "id": "tutoring-thread",
+      "expected": "add_to_calendar",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 8678,
+      "finishReason": "length"
+    },
+    {
+      "id": "interview-invite",
+      "expected": "add_to_calendar",
+      "got": "add_to_calendar",
+      "pass": true,
+      "error": null,
+      "reason": "Concrete interview time requires calendar entry.",
+      "latencyMs": 6683,
+      "finishReason": "stop"
+    },
+    {
+      "id": "availability-request",
+      "expected": "reply_needed",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 8631,
+      "finishReason": "length"
+    },
+    {
+      "id": "rejection",
+      "expected": "track_only",
+      "got": "track_only",
+      "pass": true,
+      "error": null,
+      "reason": "Rejection notification, track as closed opportunity only.",
+      "latencyMs": 7056,
+      "finishReason": "stop"
+    },
+    {
+      "id": "application-received",
+      "expected": "track_only",
+      "got": null,
+      "pass": false,
+      "error": "no_json",
+      "reason": "",
+      "latencyMs": 8957,
+      "finishReason": "length"
+    },
+    {
+      "id": "upload-references",
+      "expected": "reply_needed",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 9203,
+      "finishReason": "length"
+    },
+    {
+      "id": "job-alert",
+      "expected": "ignore",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 8918,
+      "finishReason": "length"
+    },
+    {
+      "id": "take-home-deadline",
+      "expected": "add_to_calendar",
+      "got": null,
+      "pass": false,
+      "error": "no_json",
+      "reason": "",
+      "latencyMs": 12470,
+      "finishReason": "length"
+    },
+    {
+      "id": "salary-question",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Sender asks for salary range information.",
+      "latencyMs": 8296,
+      "finishReason": "stop"
+    },
+    {
+      "id": "newsletter",
+      "expected": "ignore",
+      "got": "ignore",
+      "pass": true,
+      "error": null,
+      "reason": "Marketing newsletter with no action required.",
+      "latencyMs": 5135,
+      "finishReason": "stop"
+    },
+    {
+      "id": "still-reviewing",
+      "expected": "track_only",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 8128,
+      "finishReason": "length"
+    },
+    {
+      "id": "still-interested",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Sender asks for confirmation of interest and response by tomorrow.",
+      "latencyMs": 6405,
+      "finishReason": "stop"
+    },
+    {
+      "id": "onsite-reminder",
+      "expected": "add_to_calendar",
+      "got": null,
+      "pass": false,
+      "error": "empty_content (finish_reason=length; max_tokens too small?)",
+      "reason": "",
+      "latencyMs": 8254,
+      "finishReason": "length"
+    }
+  ]
+}

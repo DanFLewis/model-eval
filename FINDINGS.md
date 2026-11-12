@@ -10,11 +10,24 @@ The mock server in `test/` reproduces the symptom (empty content plus `finish_re
 
 ## Measurements
 
-- **Earlier session, not produced by this tool:** the original single-file script scored 12/13 on gemma4:e4b through a personal gateway with `max_tokens: 700` and 13 s between requests. That run used unsanitized emails. Only the count carries over; no per-case record or latency figures from it are included here.
+- **Earlier session, not produced by this tool:** the original single-file script scored 12/13 on gemma4:e4b through a local gateway with `max_tokens: 700` and 13 s between requests. That run used unsanitized emails. Only the count carries over; no per-case record or latency figures from it are included here.
 - **This tool against the mock server:** passes its four checks (13/13 for a correct mock, 2/13 for an always-"ignore" mock, empty content flagged at `max_tokens` 200 and recovered at 700, 429 retried). These verify the tool, not a model.
-- **This tool against local Ollama:** one run was attempted at `http://localhost:11434/v1` with gemma4:e4b. All 13 requests returned HTTP 500 because the Ollama runner failed to start the model (a memory allocation error on this machine). No model output was obtained, so no accuracy or latency is claimed. With default retries (3 per request) the run took about five minutes.
+- **This tool against local Ollama (v0.40.16), 13 cases, temperature 0, `max_tokens` 700, `http://localhost:11434/v1`:**
+
+| Model | Options | Correct | Avg latency | p95 | Errors |
+|---|---|---|---|---|---|
+| gemma4:e4b | default | 12/13 (92.3%) | 1300 ms | 1700 ms | 0 |
+| gemma4:e4b | `think:false` | 12/13 (92.3%) | 1225 ms | 1491 ms | 0 |
+| qwen3.5:9b | default | 5/13 (38.5%) | 8186 ms | 19740 ms | 8 |
+| qwen3.5:9b | `think:false` | 5/13 (38.5%) | 8216 ms | 12470 ms | 8 |
+
+  Result files are in `results/`. gemma4:e4b misses one case (an onsite reminder it labels `reply_needed` instead of `add_to_calendar`) in both runs. The latency difference between its two runs is small and could be noise. All 8 qwen3.5:9b errors are `empty_content` with `finish_reason=length`: its reasoning uses up the 700 tokens, so qwen's 38.5% mostly measures the token budget, not its judgment.
+
+- **`think:false` on `/v1` does not work.** For qwen3.5:9b a `/v1` call with `think:false` still returned empty content plus a `reasoning` field, and the error count did not change. The same flag on the native `/api/chat` endpoint returned a normal reply with no thinking. For gemma4:e4b the flag changed nothing measurable.
+- **An earlier attempt failed.** The first real run returned HTTP 500 on all 13 requests because Ollama could not allocate a ~2.8 GB pinned host-memory block. A later retry loaded the model on the first request with no changes, so the cause was most likely a transient low-memory state on this machine. That is inference; it was not reproduced.
 
 ## Not yet done
 
-- A clean measurement of gemma4:e4b with this tool once the model loads locally.
-- `max_tokens` settings and `think:false` compared side by side on the same cases.
+- Run `max_tokens` settings (e.g. 200 vs 700) side by side on the same cases against a real model.
+- Give qwen3.5:9b a larger budget (or use `/api/chat` with `think:false`) so it can be compared with gemma4:e4b fairly.
+- Repeat runs to see how much of the latency and accuracy difference is noise.

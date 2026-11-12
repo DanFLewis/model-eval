@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "model": "gemma4:e4b",
+    "baseUrl": "http://localhost:11434/v1",
+    "maxTokens": 700,
+    "temperature": 0,
+    "total": 13,
+    "passed": 12,
+    "accuracy": 0.9230769230769231,
+    "latencyAvgMs": 1300,
+    "latencyP95Ms": 1700,
+    "errors": 0
+  },
+  "results": [
+    {
+      "id": "tutoring-thread",
+      "expected": "add_to_calendar",
+      "got": "add_to_calendar",
+      "pass": true,
+      "error": null,
+      "reason": "Concrete time slot (2-4pm tomorrow) is confirmed.",
+      "latencyMs": 1700,
+      "finishReason": "stop"
+    },
+    {
+      "id": "interview-invite",
+      "expected": "add_to_calendar",
+      "got": "add_to_calendar",
+      "pass": true,
+      "error": null,
+      "reason": "Concrete interview date and time provided.",
+      "latencyMs": 1123,
+      "finishReason": "stop"
+    },
+    {
+      "id": "availability-request",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Sender needs candidate's availability for a call.",
+      "latencyMs": 1153,
+      "finishReason": "stop"
+    },
+    {
+      "id": "rejection",
+      "expected": "track_only",
+      "got": "track_only",
+      "pass": true,
+      "error": null,
+      "reason": "This is a rejection status update.",
+      "latencyMs": 1122,
+      "finishReason": "stop"
+    },
+    {
+      "id": "application-received",
+      "expected": "track_only",
+      "got": "track_only",
+      "pass": true,
+      "error": null,
+      "reason": "Application received status update; no action needed.",
+      "latencyMs": 1315,
+      "finishReason": "stop"
+    },
+    {
+      "id": "upload-references",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Candidate must submit references by the deadline.",
+      "latencyMs": 1556,
+      "finishReason": "stop"
+    },
+    {
+      "id": "job-alert",
+      "expected": "ignore",
+      "got": "ignore",
+      "pass": true,
+      "error": null,
+      "reason": "Marketing/job alert email, no specific action required.",
+      "latencyMs": 1166,
+      "finishReason": "stop"
+    },
+    {
+      "id": "take-home-deadline",
+      "expected": "add_to_calendar",
+      "got": "add_to_calendar",
+      "pass": true,
+      "error": null,
+      "reason": "Provides a concrete deadline for the take-home assignment.",
+      "latencyMs": 1289,
+      "finishReason": "stop"
+    },
+    {
+      "id": "salary-question",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Sender asks for the candidate's desired salary range.",
+      "latencyMs": 1167,
+      "finishReason": "stop"
+    },
+    {
+      "id": "newsletter",
+      "expected": "ignore",
+      "got": "ignore",
+      "pass": true,
+      "error": null,
+      "reason": "It is a general newsletter/tips, not application related.",
+      "latencyMs": 1262,
+      "finishReason": "stop"
+    },
+    {
+      "id": "still-reviewing",
+      "expected": "track_only",
+      "got": "track_only",
+      "pass": true,
+      "error": null,
+      "reason": "Status update on review timeline; no action needed.",
+      "latencyMs": 1381,
+      "finishReason": "stop"
+    },
+    {
+      "id": "still-interested",
+      "expected": "reply_needed",
+      "got": "reply_needed",
+      "pass": true,
+      "error": null,
+      "reason": "Sender requires a direct response regarding interest.",
+      "latencyMs": 1158,
+      "finishReason": "stop"
+    },
+    {
+      "id": "onsite-reminder",
+      "expected": "add_to_calendar",
+      "got": "reply_needed",
+      "pass": false,
+      "error": null,
+      "reason": "Candidate must reply to confirm the onsite interview.",
+      "latencyMs": 1503,
+      "finishReason": "stop"
+    }
+  ]
+}
